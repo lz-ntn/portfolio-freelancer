@@ -1,0 +1,14 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node (if any)
+node_modules/
+npm-debug.log
+
+# IDEs
+.vscode/
+.idea/
+
+# Screenshots over 5MB
+*.gif

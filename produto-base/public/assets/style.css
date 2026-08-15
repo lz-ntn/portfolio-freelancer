@@ -1,0 +1,80 @@
+:root {
+    --primary: #0A2A66;
+    --primary-light: #1E40AF;
+    --bg: #F8FAFC;
+    --card: #FFFFFF;
+    --text: #1E293B;
+    --text-secondary: #64748B;
+    --border: #E2E8F0;
+    --success: #10B981;
+    --danger: #EF4444;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+}
+
+.topbar nav { display: flex; gap: 1rem; align-items: center; }
+.topbar a { color: var(--primary); text-decoration: none; font-weight: 500; }
+
+.container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+.container h1 { margin-bottom: 1rem; color: var(--primary); }
+
+.alert {
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+.alert-success { background: #ECFDF5; color: #065F46; border: 1px solid #A7F3D0; }
+.alert-error { background: #FEF2F2; color: #991B1B; border: 1px solid #FECACA; }
+
+form { display: flex; flex-direction: column; gap: 0.75rem; max-width: 480px; }
+form.search { flex-direction: row; align-items: center; }
+label { font-size: 0.85rem; font-weight: 600; }
+input, textarea, select {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    width: 100%;
+}
+button, .btn {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    width: auto;
+}
+button:hover, .btn:hover { background: var(--primary-light); }
+
+table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 8px; overflow: hidden; }
+th, td { padding: 0.6rem 0.9rem; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+th { background: #F1F5F9; color: var(--text-secondary); font-size: 0.8rem; text-transform: uppercase; }
+td a { color: var(--primary); margin-right: 0.5rem; }
+
+.search { margin-bottom: 1rem; }
+.search input { flex: 1; }
+
+.login-page { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+.login-container { background: var(--card); padding: 2rem; border-radius: 12px; border: 1px solid var(--border); width: 340px; }
+.login-container h1 { text-align: center; color: var(--primary); margin-bottom: 1.5rem; }

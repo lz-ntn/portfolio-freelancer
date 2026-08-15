@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luiz Antonio · Web Developer · Porto</title>
+    <meta name="description" content="Portfólio de Luiz Antonio — Web Developer especializado em CRMs, ERPs e sistemas de gestão full-stack. PHP, JavaScript, MySQL, Appwrite.">
+    <meta name="keywords" content="web developer, porto, freelancer, php, javascript, mysql, crms, erps, sistemas de gestão">
+    <meta name="author" content="Luiz Antonio">
+    <meta property="og:title" content="Luiz Antonio · Web Developer">
+    <meta property="og:description" content="Sistemas de gestão, CRMs e ERPs completos, em produção, com testes automatizados.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://losmanim.github.io/portfolio/">
+    <meta property="og:image" content="https://losmanim.github.io/portfolio/assets/crm-dashboard.png">
+    <meta name="theme-color" content="#0A2A66">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'><defs><linearGradient id='bg' x1='0' y1='0' x2='48' y2='48' gradientUnits='userSpaceOnUse'><stop offset='0' stop-color='%230F3B8A'/><stop offset='1' stop-color='%230A2A66'/></linearGradient></defs><rect width='48' height='48' rx='12' fill='url(%23bg)'/><rect x='11' y='11' width='12' height='12' rx='3' fill='%23FFFFFF' fill-opacity='0.95'/><rect x='25' y='11' width='12' height='7' rx='3' fill='%23FFFFFF' fill-opacity='0.6'/><rect x='25' y='20' width='12' height='7' rx='3' fill='%23FFFFFF' fill-opacity='0.6'/><rect x='11' y='25' width='12' height='12' rx='3' fill='%23FBBF24'/><path d='M13.8 33.5 L16.6 30.2 L18.9 31.8 L22.2 27.3' stroke='%230A2A66' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'/><circle cx='22.2' cy='27.3' r='1.4' fill='%230A2A66'/></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary:#0A2A66; --primary-light:#1E40AF; --accent:#3B82F6; --bg:#F8FAFC; --card:#FFFFFF; --text:#1E293B; --text-secondary:#64748B; --border:#E2E8F0; --success:#10B981; --warning:#F59E0B; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+
+        nav { position:fixed; top:0; left:0; right:0; background:rgba(255,255,255,0.95); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); z-index:100; padding:0 2rem; }
+        nav .container { display:flex; align-items:center; justify-content:space-between; height:56px; max-width:1100px; margin:0 auto; }
+        nav .logo { display:flex; align-items:center; gap:0.6rem; font-weight:800; color:var(--primary); text-decoration:none; font-size:1.05rem; }
+        nav .logo svg { width:30px; height:30px; flex-shrink:0; }
+        .hero-logo { width:76px; height:76px; margin:0 auto 1.5rem; filter:drop-shadow(0 10px 28px rgba(0,0,0,0.35)); }
+        .hero-logo svg { width:100%; height:100%; }
+        .private-note { display:block; margin-top:0.75rem; color:var(--text-secondary); font-size:0.8rem; }
+        nav .links { display:flex; gap:1.5rem; }
+        nav .links a { text-decoration:none; color:var(--text-secondary); font-size:0.85rem; font-weight:500; transition:color 0.2s; }
+        nav .links a:hover { color:var(--primary); }
+
+        .container { max-width:1100px; margin:0 auto; padding:0 2rem; }
+
+        .hero { background:linear-gradient(135deg,var(--primary) 0%,#0F3B8A 100%); color:white; padding:7rem 0 4rem; text-align:center; }
+        .hero h1 { font-size:2.8rem; font-weight:800; margin-bottom:0.5rem; }
+        .hero p { font-size:1.2rem; opacity:0.9; max-width:600px; margin:0 auto; }
+        .hero-tags { margin-top:1.5rem; display:flex; justify-content:center; gap:0.75rem; flex-wrap:wrap; }
+        .hero-tags span { background:rgba(255,255,255,0.15); padding:0.4rem 1rem; border-radius:20px; font-size:0.85rem; backdrop-filter:blur(4px); }
+        .hero-cta { margin-top:2rem; display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; }
+        .hero-cta .btn { display:inline-block; padding:0.7rem 1.8rem; border-radius:8px; text-decoration:none; font-weight:600; font-size:0.9rem; }
+        .btn-white { background:white; color:var(--primary); }
+        .btn-outline-white { border:2px solid white; color:white; background:transparent; }
+        .btn-outline-white:hover { background:rgba(255,255,255,0.1); }
+
+        section { padding:5rem 0; }
+        section h2 { font-size:1.8rem; font-weight:700; margin-bottom:1rem; color:var(--primary); }
+        .section-desc { color:var(--text-secondary); margin-bottom:2.5rem; max-width:600px; font-size:1rem; }
+
+        .about-content { max-width:700px; }
+        .about-content p { margin-bottom:1rem; color:var(--text-secondary); font-size:1rem; }
+
+        .project-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
+        @media (max-width:768px) { .project-grid { grid-template-columns:1fr; } }
+        .project-card { background:var(--card); border-radius:16px; padding:2rem; border:1px solid var(--border); transition:transform 0.2s, box-shadow 0.2s; }
+        .project-card:hover { transform:translateY(-4px); box-shadow:0 12px 40px rgba(0,0,0,0.1); }
+        .project-card h3 { font-size:1.4rem; font-weight:700; margin-bottom:0.25rem; }
+        .project-card .subtitle { color:var(--text-secondary); font-size:0.9rem; margin-bottom:1rem; }
+        .project-card .tech { display:flex; flex-wrap:wrap; gap:0.4rem; margin-bottom:1.25rem; }
+        .project-card .tech span { background:#EFF6FF; color:var(--primary-light); font-size:0.75rem; padding:0.2rem 0.7rem; border-radius:12px; font-weight:500; }
+        .project-card p { color:var(--text-secondary); font-size:0.95rem; margin-bottom:1rem; }
+        .project-card .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:0.75rem; margin-bottom:1.25rem; }
+        .project-card .stat { text-align:center; }
+        .project-card .stat-value { font-size:1.3rem; font-weight:700; color:var(--primary); }
+        .project-card .stat-label { font-size:0.75rem; color:var(--text-secondary); }
+        .project-card .btn { display:inline-block; padding:0.6rem 1.5rem; border-radius:8px; text-decoration:none; font-weight:600; font-size:0.9rem; margin-right:0.5rem; }
+        .btn-primary { background:var(--primary); color:white; }
+        .btn-primary:hover { background:var(--primary-light); }
+        .btn-outline { border:2px solid var(--border); color:var(--text); }
+        .btn-outline:hover { border-color:var(--primary); color:var(--primary); }
+
+        .project-img { width:100%; height:200px; border-radius:8px; margin-bottom:1rem; overflow:hidden; background:var(--bg); }
+        .project-img img { width:100%; height:100%; object-fit:cover; }
+
+        .feature-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1.5rem; }
+        .feature-card { background:var(--card); border-radius:12px; padding:1.5rem; border:1px solid var(--border); transition:transform 0.2s; }
+        .feature-card:hover { transform:translateY(-2px); }
+        .feature-card .icon { font-size:2rem; margin-bottom:0.75rem; }
+        .feature-card h4 { font-weight:600; margin-bottom:0.5rem; }
+        .feature-card p { font-size:0.85rem; color:var(--text-secondary); }
+
+        .contact { background:var(--primary); color:white; text-align:center; padding:4rem 0; }
+        .contact h2 { color:white; }
+        .contact p { opacity:0.9; margin-bottom:1.5rem; font-size:1.05rem; }
+        .contact .btn-white { background:white; color:var(--primary); padding:0.7rem 1.8rem; border-radius:8px; text-decoration:none; font-weight:600; display:inline-block; margin:0.3rem; }
+        .contact .btn-outline-white { border:2px solid white; color:white; background:transparent; padding:0.7rem 1.8rem; border-radius:8px; text-decoration:none; font-weight:600; display:inline-block; margin:0.3rem; }
+        .contact .btn-outline-white:hover { background:rgba(255,255,255,0.1); }
+
+        .footer { text-align:center; padding:2rem 0; color:var(--text-secondary); font-size:0.85rem; }
+
+        @media (max-width:768px) {
+            .hero h1 { font-size:2rem; }
+            nav .links { gap:0.8rem; }
+            nav .links a { font-size:0.75rem; }
+            nav .logo span { display:none; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="container">
+        <a href="#" class="logo">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs><linearGradient id="lg-nav" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#0F3B8A"/><stop offset="1" stop-color="#0A2A66"/></linearGradient></defs>
+                <rect width="48" height="48" rx="12" fill="url(#lg-nav)"/>
+                <rect x="11" y="11" width="12" height="12" rx="3" fill="#FFFFFF" fill-opacity="0.95"/>
+                <rect x="25" y="11" width="12" height="7" rx="3" fill="#FFFFFF" fill-opacity="0.6"/>
+                <rect x="25" y="20" width="12" height="7" rx="3" fill="#FFFFFF" fill-opacity="0.6"/>
+                <rect x="11" y="25" width="12" height="12" rx="3" fill="#FBBF24"/>
+                <path d="M13.8 33.5 L16.6 30.2 L18.9 31.8 L22.2 27.3" stroke="#0A2A66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <circle cx="22.2" cy="27.3" r="1.4" fill="#0A2A66"/>
+            </svg>
+            <span>Luiz Antonio</span>
+        </a>
+        <div class="links">
+            <a href="#projetos">Projetos</a>
+            <a href="#clientes">Clientes</a>
+            <a href="#skills">Competências</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#contacto">Contacto</a>
+        </div>
+    </div>
+</nav>
+
+<div class="hero">
+    <div class="container">
+        <div class="hero-logo">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs><linearGradient id="lg-hero" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#1E40AF"/><stop offset="1" stop-color="#0A2A66"/></linearGradient></defs>
+                <rect width="48" height="48" rx="12" fill="url(#lg-hero)" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+                <rect x="11" y="11" width="12" height="12" rx="3" fill="#FFFFFF" fill-opacity="0.95"/>
+                <rect x="25" y="11" width="12" height="7" rx="3" fill="#FFFFFF" fill-opacity="0.6"/>
+                <rect x="25" y="20" width="12" height="7" rx="3" fill="#FFFFFF" fill-opacity="0.6"/>
+                <rect x="11" y="25" width="12" height="12" rx="3" fill="#FBBF24"/>
+                <path d="M13.8 33.5 L16.6 30.2 L18.9 31.8 L22.2 27.3" stroke="#0A2A66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <circle cx="22.2" cy="27.3" r="1.4" fill="#0A2A66"/>
+            </svg>
+        </div>
+        <h1>Olá, sou o Luiz Antonio</h1>
+        <p>Web Developer especializado em CRMs, sistemas de gestão e aplicações web full-stack</p>
+        <div class="hero-tags">
+            <span>📍 Porto, Portugal</span>
+            <span>Portugal · Brasil</span>
+            <span>SaaS Multi-tenant</span>
+            <span>WhatsApp API</span>
+            <span>PIX / Asaas</span>
+            <span>PHP · MySQL</span>
+            <span>134 testes automatizados</span>
+        </div>
+        <div class="hero-cta">
+            <a href="#projetos" class="btn btn-white">Ver Projetos</a>
+            <a href="#contacto" class="btn btn-outline-white">Contactar</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <section id="sobre">
+        <h2>Sobre Mim</h2>
+        <div class="about-content">
+            <p>Sou desenvolvedor web sediado no Porto, Portugal. Construo sistemas de gestão completos para pequenas e médias empresas — desde CRMs e ERPs até sites institucionais e landing pages.</p>
+            <p>Os meus projetos estão em produção, com código limpo, testes automatizados e documentação profissional. Trabalho maioritariamente com PHP, MySQL e JavaScript puro, sem depender de frameworks pesados — o que resulta em aplicações leves, rápidas e de fácil manutenção.</p>
+            <p>Disponível para projetos remotos nacionais e internacionais.</p>
+        </div>
+    </section>
+
+    <section id="projetos">
+        <h2>Projetos em Destaque</h2>
+        <p class="section-desc">Sistemas completos, em produção, com documentação profissional e testes automatizados.</p>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="assets/crm-dashboard.png" alt="Dashboard do PoupaPlus CRM" loading="lazy">
+                </div>
+                <h3>PoupaPlus CRM</h3>
+                <div class="subtitle">CRM de Telecomunicações · SPA Moderno</div>
+                <div class="tech">
+                    <span>Vanilla JS</span>
+                    <span>Appwrite</span>
+                    <span>Bootstrap 5</span>
+                    <span>PWA</span>
+                    <span>Vitest</span>
+                    <span>Playwright</span>
+                </div>
+                <p>CRM com <strong>22 módulos</strong> (leads, clientes, vendas, comissões, BI...), lazy loading, <strong>419 testes</strong>, autenticação via server-side teams, logging estruturado e componentes reutilizáveis.</p>
+                <div class="stats">
+                    <div class="stat"><div class="stat-value">419</div><div class="stat-label">Testes</div></div>
+                    <div class="stat"><div class="stat-value">22</div><div class="stat-label">Módulos</div></div>
+                    <div class="stat"><div class="stat-value">50+</div><div class="stat-label">JS Files</div></div>
+                </div>
+                <a href="mailto:los486@hotmail.com?subject=Pedido%20de%20acesso%20ao%20codigo%20-%20PoupaPlus%20CRM" class="btn btn-primary">Pedir acesso ao código</a>
+                <span class="private-note">🔒 Repositório privado · acesso partilhado com clientes</span>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="assets/gestaoBH-dashboard.png" alt="Dashboard do Gestão BH ERP" loading="lazy">
+                </div>
+                <h3>Gestão BH Artefatos</h3>
+                <div class="subtitle">ERP para Indústria · PHP/MySQL</div>
+                <div class="tech">
+                    <span>PHP 7+</span>
+                    <span>MySQL</span>
+                    <span>PDO</span>
+                    <span>Bcrypt</span>
+                    <span>HTML/CSS</span>
+                </div>
+                <p>ERP completo para fábrica de artefatos de concreto: <strong>orçamentos → produção → estoque → entregas → financeiro → frota</strong>. Pipeline de 8 estados, segurança com PDO + bcrypt, <strong>4.718 linhas de documentação</strong>.</p>
+                <div class="stats">
+                    <div class="stat"><div class="stat-value">11.456</div><div class="stat-label">Linhas</div></div>
+                    <div class="stat"><div class="stat-value">16</div><div class="stat-label">Tabelas</div></div>
+                    <div class="stat"><div class="stat-value">10</div><div class="stat-label">Módulos</div></div>
+                </div>
+                <a href="mailto:los486@hotmail.com?subject=Pedido%20de%20acesso%20ao%20codigo%20-%20Gestao%20BH%20ERP" class="btn btn-primary">Pedir acesso ao código</a>
+                <span class="private-note">🔒 Repositório privado · acesso partilhado com clientes</span>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="screenshots/zap-dashboard-auth.png" alt="Dashboard de Zap - Gestão Oficina" loading="lazy">
+                </div>
+                <h3>Zap · Gestão de Oficina</h3>
+                <div class="subtitle">SaaS multi-empresa de gestão de oficinas mecânicas · Production-ready</div>
+                <div class="tech">
+                    <span>PHP 8</span>
+                    <span>MySQL</span>
+                    <span>PDO</span>
+                    <span>Evolution API</span>
+                    <span>Asaas PIX</span>
+                    <span>Render</span>
+                </div>
+                <p><strong>SaaS multi-empresa</strong> para oficinas mecânicas: 70-80% do código reutilizável entre clientes, arquitetura multi-tenant (isolamento de dados por empresa), trial automático de 14 dias, gestão de assinaturas e upgrades via Asaas.</p>
+                <div class="stats">
+                    <div class="stat"><div class="stat-value">134</div><div class="stat-label">Testes</div></div>
+                    <div class="stat"><div class="stat-value">12</div><div class="stat-label">Tabelas</div></div>
+                    <div class="stat"><div class="stat-value">8</div><div class="stat-label">Módulos</div></div>
+                </div>
+                <p style="color:var(--text-secondary);font-size:0.85rem;margin-bottom:1rem;"><strong>Resultados:</strong> 3ª empresa ativa em pré-lançamento (Brasil + Portugal); 100% dos testes automatizados (134/134) garantem zero regressões no núcleo partilhado.</p>
+                <a href="https://github.com/losmanim/produto-base" class="btn btn-primary">Ver no GitHub</a>
+                <a href="https://produto-base-0ir3.onrender.com" class="btn btn-outline">Demo em produção</a>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="screenshots/zap-ai-agent-demo.png" alt="Demo de Agente IA WhatsApp" loading="lazy">
+                </div>
+                <h3>Agente IA · WhatsApp Business</h3>
+                <div class="subtitle">Assistente conversacional autônomo integrado ao CRM · Demo</div>
+                <div class="tech">
+                    <span>Evolution API</span>
+                    <span>Webhooks</span>
+                    <span>Intent Detection</span>
+                    <span>Lead Scoring</span>
+                    <span>Quick Replies</span>
+                    <span>Multi-tenant</span>
+                </div>
+                <p>Demo de <strong>agente de IA conversacional</strong> integrado ao WhatsApp via Evolution API: classifica intenções em tempo real (agendamento, orçamento, pagamento), gera quick replies contextuais, faz <em>lead scoring</em> automático e converte sentimentos em tags (positivo/neutro/negativo).</p>
+                <div class="stats">
+                    <div class="stat"><div class="stat-value">3.2s</div><div class="stat-label">Resposta</div></div>
+                    <div class="stat"><div class="stat-value">+62%</div><div class="stat-label">Engajamento</div></div>
+                    <div class="stat"><div class="stat-value">98%</div><div class="stat-label">Precisão</div></div>
+                </div>
+                <p style="color:var(--text-secondary);font-size:0.85rem;margin-bottom:1rem;"><strong>Resultados da demo:</strong> resposta automática em 3.2s vs 45s manual; 62% mais cliques em CTAs com quick replies; detecção de intenção com 98% de precisão em 8 categorias de serviço.</p>
+                <a href="https://github.com/losmanim/produto-base" class="btn btn-primary">Ver spec + demo</a>
+                <span class="private-note">🔬 Demo implementada como proof-of-concept no módulo WhatsApp</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="clientes">
+        <h2>Projetos de Cliente em Produção</h2>
+        <p class="section-desc">Projetos reais entregues a clientes, com sistema completo, documentação operacional e melhorias contínuas.</p>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="assets/gcc-dashboard.jpg" alt="Dashboard do GCC Call Center" loading="lazy">
+                </div>
+                <h3>GCC Call Center</h3>
+                <div class="subtitle">Gestão de Clientes e Contratos · Telecomunicações</div>
+                <div class="tech">
+                    <span>Vanilla JS</span>
+                    <span>Appwrite</span>
+                    <span>EmailJS</span>
+                    <span>Netlify</span>
+                    <span>CSV Export</span>
+                </div>
+                <p>Plataforma de gestão para call center de telecomunicações (NOS, MEO, Vodafone): <strong>dashboard com KPIs, CRUD de clientes, catálogo de planos 3P/4P, contratos, aprovações por email e leads</strong>.</p>
+                <div class="stats">
+                    <div class="stat"><div class="stat-value">7</div><div class="stat-label">Módulos</div></div>
+                    <div class="stat"><div class="stat-value">3</div><div class="stat-label">Operadoras</div></div>
+                    <div class="stat"><div class="stat-value">Auto</div><div class="stat-label">Deploy</div></div>
+                </div>
+                <a href="https://github.com/losmanim/gcc-call-center" class="btn btn-primary">Ver repositório</a>
+                <a href="mailto:los486@hotmail.com?subject=Demo%20GCC%20Call%20Center" class="btn btn-outline">Pedir demo</a>
+            </div>
+
+            <div class="project-card">
+                <h3>Restaurante Beira Rio</h3>
+                <div class="subtitle">Site Oficial + Sistema de Pedidos · Brasil</div>
+                <div class="tech">
+                    <span>HTML5</span>
+                    <span>CSS3</span>
+                    <span>Vanilla JS</span>
+                    <span>PWA</span>
+                    <span>SEO</span>
+                </div>
+                <p>Site institucional <strong>em produção</strong> com cardápio digital interativo, sistema de pedidos, PWA instalável, modo escuro/claro e SEO com dados estruturados.</p>
+                <div class="stats">
+                    <div class="stat"><div class="stat-value">10+</div><div class="stat-label">Funcionalidades</div></div>
+                    <div class="stat"><div class="stat-value">PWA</div><div class="stat-label">Instalável</div></div>
+                    <div class="stat"><div class="stat-value">Ao vivo</div><div class="stat-label">Produção</div></div>
+                </div>
+                <a href="https://restaurante-beira-rio2.vercel.app/" class="btn btn-primary">Visitar site</a>
+                <span class="private-note">🔒 Código privado · acesso partilhado com clientes</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Competências Técnicas</h2>
+        <p class="section-desc">Stack principal com que trabalho diariamente.</p>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="icon">⚙️</div>
+                <h4>Backend</h4>
+                <p>PHP 7+/8+, MySQL, PDO, SQL, Appwrite (BaaS), APIs REST, Serverless Functions</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🎨</div>
+                <h4>Frontend</h4>
+                <p>JavaScript Vanilla, Bootstrap 5, CSS3, HTML5, PWA, SPAs com lazy loading</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🧪</div>
+                <h4>Testes & Qualidade</h4>
+                <p>Vitest, Playwright, testes unitários + E2E, jsdom, mocks, cobertura de código</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📦</div>
+                <h4>DevOps & Ferramentas</h4>
+                <p>Git, GitHub Actions (CI/CD), npm, LAMPP/XAMPP, Linux, Service Workers</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🔒</div>
+                <h4>Segurança</h4>
+                <p>PDO Prepared Statements, bcrypt, proteção XSS, rate limiting, autenticação server-side</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">📱</div>
+                <h4>Outros</h4>
+                <p>Design responsivo, Google Calendar API, documentação técnica, manutenção de sistemas legados</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicos">
+        <h2>Serviços Freelancer</h2>
+        <p class="section-desc">Soluções web para pequenas e médias empresas.</p>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="icon">🏢</div>
+                <h4>CRM / ERP à Medida</h4>
+                <p>Sistemas de gestão completos: clientes, vendas, estoque, financeiro, produção.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🌐</div>
+                <h4>Sites & Landing Pages</h4>
+                <p>Sites profissionais com captura de leads, formulários inteligentes e blog.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🔄</div>
+                <h4>Automação de Processos</h4>
+                <p>Substituir Excel e papel por sistemas web com relatórios e rastreabilidade.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon">🔧</div>
+                <h4>Manutenção & Melhorias</h4>
+                <p>Dar manutenção a sistemas existentes, adicionar funcionalidades, refatorar código legado.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="contact" id="contacto">
+    <div class="container">
+        <h2>Vamos Trabalhar Juntos</h2>
+        <p>Freelancer no Porto, Portugal · Disponível para projetos remotos</p>
+        <a href="mailto:los486@hotmail.com" class="btn btn-white">los486@hotmail.com</a>
+        <a href="https://www.upwork.com/freelancers/~018a8878b023c31679" class="btn btn-outline-white">Upwork</a>
+        <a href="https://www.linkedin.com/in/luiz-antonio-de-oliveira-silva-84945197" class="btn btn-outline-white">LinkedIn</a>
+    </div>
+</div>
+
+<div class="footer">
+    <p>&copy; 2026 Luiz Antonio · Web Developer · Porto, Portugal</p>
+</div>
+
+</body>
+</html>
